@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
+    <link rel="stylesheet" href="css/site.css">
+    <title>Agenda & Calculadora Cambio</title>
 </head>
 <body>
+    <header>
+        <h2>Calculadora de cambio óptimo de billetes y monedas</h2>
+    </header>
+    <div class="container">
+        <label for="totalCompra">Introduzca el importe total de la compra</label>
+        <input type="number" name="totalCompra" id="compra">
+        <label for="totalEntregado">Introduzca la cantidad que entrega</label>
+        <input type="number" name="totalEntregado" id="entrega">
+        <button type="button" id="btnCalcular">Calcular</button>
+    </div>
+    <div class="resultado">
+        <h3 id=>Ver consola para resultados (F12)</h3>
+    </div>
     <script src="js/app.js"></script>
 </body>
 </html>
