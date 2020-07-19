@@ -85,8 +85,41 @@ getAvailability = (arr1,arr2) => {
  ///////////////////////////////////////////////////////////////////////////
 
 
-var divisas = [200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
+//var divisas = [200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
 
+var divisas = [ {
+    name: 200,
+    quantity: 0,
+    },
+    {
+    name: 100,
+    quantity: 3,
+    },
+    {
+    name: 50,
+    quantity: 6,
+    },
+    {
+    name: 20,
+    quantity: 3,
+    },
+    {
+    name: 10,
+    quantity: 4,
+    },
+    {
+    name: 5,
+    quantity: 2,
+    },
+    {
+    name: 2,
+    quantity: 3,
+    },
+    {
+    name: 1,
+    quantity: 1,
+    },
+];
 
 
  function getInputSubstraction(){
@@ -100,13 +133,13 @@ var divisas = [200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
     importeDevolucion = -importeDevolucion;
 
     for(var divisa of divisas){
-        var posible = importeDevolucion / divisa;
-        if(posible >= 1){
-            importeDevolucion = importeDevolucion - Math.trunc(posible) * divisa;
+        var posible = importeDevolucion / divisa.name;
+        if((posible >= 1) && (posible <= divisa.quantity)){
+            importeDevolucion = importeDevolucion - Math.trunc(posible) * divisa.name;
             if(importeDevolucion >=2){
-                console.log("Se han usado: " + Math.trunc(posible) + " billetes de " + divisa +" euros.");
+                console.log("Se han usado: " + Math.trunc(posible) + " billetes de " + divisa.name +" euros.");
             }else{
-                console.log("Se han usado: " + Math.trunc(posible) + " monedas de " + divisa +" euro.");
+                console.log("Se han usado: " + Math.trunc(posible) + " monedas de " + divisa.name +" euro.");
             }
         }
     }
