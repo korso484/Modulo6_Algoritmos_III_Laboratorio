@@ -1,3 +1,5 @@
+///////////////////////////////AGENDA///////////////////////////////
+
 // Constantes
 var WORK_HOURS = [
     "08:00 - 09:00",
@@ -29,64 +31,42 @@ var myTeam = [
     availability: new Array(8).fill(true)
     }, 
 ];
-//Generamos aleatoriamente true o false para disponibilidad
+
+var arrayAux = [];
+
+//Generamos random true o false 
 getRandom = () => Math.random() < 0.5 ? true : false;
 
-//Generamos franja horaria
-getHour = (arr, index) =>  arr[index];
-
-getHour(WORK_HOURS);
-
-//Generamos disponibilidad aleatoria
-getRandomSchedule = (team) => {  
-    var wantedIndex = [];
-    var contador =0;
-    for(var i=0; i< team.length;i++){
-        var newAvailability = [];
-        console.log("\nDisponibilidad de "+ team[i].name);
-        for(var hour of WORK_HOURS){
-            team[i]["availability"] = getRandom();
-            console.log(hour + ": " + team[i].availability); 
-            newAvailability.push(team[i]["availability"]);
-        } 
-        var index = newAvailability.indexOf(true);
-        contador += index;
-        wantedIndex.push(index);    
-    } 
-    return wantedIndex;
-}    
- 
-//Comprobamos primer hueco disponible del grupo
-getAvailability = (arr1,arr2) => {
-    var size = arr1.length;
-    var counter = 1;
-    for(var ind =1; ind < size; ind++){
-        for(var left =0; left < size -ind; left++){
-            var right = left +1;
-            if(arr1[left] === arr1[right]){
-               counter = counter *1;
-            }else{
-                counter = counter *0;
-            }
-        }  
+//Generamos random para cada hora y mostramos resultados
+getRandomSchedule = (team, hours) => { 
+    var newAvailability = [];
+    var contador;
+    for(var hour of hours){
+        var valor = true;
+        for(var partner of team){
+            newAvailability.push(partner["availability"] = getRandom());
+        }
+        valor = valor * partner.availability;
+        arrayAux.push(valor);     
     }
-    //Si el contador coincide con el valor de los elementos hay hueco
-    if(counter === 1){
-        var h = getHour(WORK_HOURS, arr1[0]);
-        console.log("Hueco encontrado en el horario: " + h);       
+    if(arrayAux.indexOf(1) != -1){
+        console.log("Hueco encontrado en el horario: " + hours[arrayAux.indexOf(1)]);
     }else{
-        console.log("Lo siento no hay hueco disponible en el equipo");
+        console.log("Lo siento. No hay hueco disponible en el equipo.");
     }
- }
- 
- getAvailability(getRandomSchedule(myTeam),WORK_HOURS);
+}
 
 
- ///////////////////////////////////////////////////////////////////////////
+getRandomSchedule(myTeam, WORK_HOURS);
 
 
+ ///////////////////////////////CALCULADORA CAMBIO OPTIMO BILLETES Y MONEDAS///////////////////////////////
+
+
+//Básico
 //var divisas = [200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01];
 
+//Challenge
 var divisas = [ {
     name: 200,
     quantity: 0,
